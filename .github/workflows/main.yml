@@ -74,6 +74,6 @@ jobs:
         rm -r book/html/
         rm -rf book/typst-pdf/
     - name: Deploy
-      run: deno -A ./bundle.cjs 
+      run: deno -A ./bundle.cjs deploy
       env:
         RTH_API_KEY: ${{ secrets.RTH_API_KEY }}

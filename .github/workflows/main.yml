@@ -67,12 +67,7 @@ jobs:
         rustc -Vv
         mdbook --version
     - name: Run mdBook Build
-      run:  |
-        mdbook build
-        mv book/html/* book/
-        mv "book/typst-pdf/Rust 程序设计语言 简体中文版.pdf" book/
-        rm -r book/html/
-        rm -rf book/typst-pdf/
+      run: mdbook build
     - name: Deploy
       run: deno -A ./bundle.cjs deploy
       env:

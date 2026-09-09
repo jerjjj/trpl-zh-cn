@@ -1,4 +1,4 @@
 {
-	"outdir": "./book/html",
+	"outdir": "book/html",
 	"site": "rust.jerjjj.cn"
 }

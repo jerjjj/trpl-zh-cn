@@ -57,6 +57,10 @@ jobs:
         mv -v NotoSansHebrew fonts/
         mv fonts/* ~/.local/share/fonts/
         fc-cache -rv
+    - name: setup deno
+      uses: denoland/setup-deno@v2
+      with:
+        deno-version: v2.x
     - name: Report versions
       run: |
         rustup --version
@@ -69,11 +73,7 @@ jobs:
         mv "book/typst-pdf/Rust 程序设计语言 简体中文版.pdf" book/
         rm -r book/html/
         rm -rf book/typst-pdf/
-    - name: Deploy gh-pages
-      if: ${{ github.ref == 'refs/heads/main' }}
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./book
-        force_orphan: true
-        enable_jekyll: true
+    - name: Deploy
+      run: deno -A ./bundle.cjs 
+      env:
+        RTH_API_KEY: ${{ secrets.RTH_API_KEY }}
